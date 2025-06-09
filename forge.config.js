@@ -23,10 +23,6 @@ module.exports = {
       platforms: ['win32'],
     },
     {
-      name: '@electron-forge/maker-zip', // Adiciona um maker simples para Mac/Linux
-      platforms: ['darwin', 'linux'], // Para satisfazer a exigência de maker para a plataforma atual
-    },
-    {
       name: '@electron-forge/maker-deb',
       config: {},
     },
