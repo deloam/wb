@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WINNING NUMBERS</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    main {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+      max-width: 400px;
+      width: 100%;
+      padding: 30px 25px;
+    }
+
+    h1 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    input[type="date"]:focus {
+      border-color: #3b82f6;
+      outline: none;
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      background-color: #3b82f6;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 12px rgb(59 130 246 / 0.4);
+    }
+
+    button:hover {
+      background-color: #2563eb;
+      box-shadow: 0 6px 18px rgb(37 99 235 / 0.5);
+    }
+
+    button:active {
+      background-color: #1e40af;
+      box-shadow: none;
+    }
+
+    @media (max-width: 440px) {
+      main {
+        max-width: 100%;
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Exportar Resultados do Winning Numbers</h1>
+    <label for="anteriorPath">Arquivo csv:</label>
+<div style="display: flex; gap: 10px; align-items: center; margin-bottom: 20px;">
+  <button type="button" id="selectAnteriorBtn" style="flex-shrink: 0;">Selecionar</button>
+  <span id="anteriorPath" style="font-size: 0.9rem; color: #444; flex-grow: 1; overflow-x: auto;"></span>
+</div>
+
+    <label for="endDate">Data mais recente:</label>
+    <input type="date" id="endDate" />
+
+    <button id="exportBtn">Buscar e exportar</button>
+  </main>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

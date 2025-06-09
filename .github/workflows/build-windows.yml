@@ -1,0 +1,51 @@
+# .github/workflows/build-windows.yml
+
+name: Build Winning Numbers for Windows
+
+on:
+  push:
+    branches:
+      - main # Dispara o workflow sempre que houver um push na branch 'main'
+  workflow_dispatch: # Permite que você execute o workflow manualmente na aba 'Actions' do GitHub
+
+jobs:
+  build-windows:
+    runs-on: windows-latest # **Crucial: Use uma máquina virtual Windows**
+
+    steps:
+      - name: Checkout code # Baixa o código do seu repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js # Configura o ambiente Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use uma versão LTS do Node.js compatível com o Electron 30+
+
+      - name: Install dependencies # Instala as dependências do seu projeto
+        run: npm install
+
+      - name: Build Electron app for Windows # Executa o comando de make do Electron Forge para Windows
+        # O comando é o mesmo que você usaria localmente, mas aqui ele roda em um ambiente Windows
+        run: npm run make -- --platform=win32 --arch=x64
+
+      - name: Upload Windows installer # Envia o instalador gerado como um artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: winning-numbers-windows-installer
+          path: out/make/squirrel.windows/x64/*.exe # Caminho onde o Electron Forge coloca o instalador .exe
+          # Se você usou um maker diferente ou se o caminho for outro, ajuste aqui
+          # Você pode precisar verificar a estrutura exata da pasta 'out/make' após uma build bem-sucedida em uma VM local ou manualmente.
+
+      # Opcional: Passo para criar uma Release no GitHub
+      # Você precisaria de um token de acesso pessoal (PAT) com permissões de 'repo'
+      # e configurá-lo como um 'secret' no seu repositório do GitHub (por exemplo, GITHUB_TOKEN)
+      # - name: Create GitHub Release
+      #   if: startsWith(github.ref, 'refs/tags/') # Apenas se o push for uma tag (ex: v1.0.0)
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     files: out/make/squirrel.windows/x64/*.exe
+      #     token: ${{ secrets.GITHUB_TOKEN }} # Use o token padrão do GitHub Actions para releases
+      #     tag_name: ${{ github.ref_name }}
+      #     name: Release ${{ github.ref_name }}
+      #     draft: false
+      #     prerelease: false
