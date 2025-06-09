@@ -1,6 +1,7 @@
 {
   "name": "winning-numbers",
   "version": "2.0.0",
+  "productName": "WinningNumbers",
   "main": "main.js",
   "description": "App para exportar dados de loteria",
   "author": "Deloam",

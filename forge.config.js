@@ -5,6 +5,7 @@ module.exports = {
   packagerConfig: {
     asar: true,
     icon: './assets/icon',
+    productName: 'WinningNumber', 
   },
   rebuildConfig: {},
   makers: [
